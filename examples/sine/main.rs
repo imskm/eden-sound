@@ -122,8 +122,17 @@ fn run() -> Result<(), String> {
         );
     }
 
+	/*
     let output_dev = ctx
         .default_output_device()
+        .map_err(|_| "Error getting default output device".to_string())?;
+	*/
+
+	// @NOTE(muktar):
+	// Virtual device Virtual_Sink index is 4
+	// and the system default is 3
+    let output_dev = ctx
+		.output_device(5)
         .map_err(|_| "Error getting default output device".to_string())?;
 
     println!(
